@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+   My Books
+{% endblock title%}
+
+
+{% block navlinks %}
+  {% for item in item_list %}
+   <li>
+       <a class="nav-link" href="{{ item.link }}">{{ item.item}} <span class="sr-only">(current)</span></a>
+   </li>
+
+   {% endfor %}
+   <li>
+           <!-- Added a simple search -->
+        <form action="{% url 'searchbar' %}" method="get">
+            <input type="text" name="search"/>
+            <button type="submit">Search</button>
+        </form>
+ <!-- end of search form -->
+   </li>
+{% endblock navlinks %}
+
+{% block content %}
+
+
+
+	<div class="row">
+		{% for product in books %}
+		<div class="col-lg-4">
+			{% comment %} <img class="thumbnail" src="{{product.imageURL}}"> {% endcomment %}
+            {% comment %} <img width="100%%" height="200" class="thumbnail" src="{% static 'placeholder.png' %}"> {% endcomment %}
+            <img width="50%%" height="200" class="thumbnail" src="{{ product.picture }}">
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+				{% comment %} <button data-product="{{product.id}}" data-action="add" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</button> {% endcomment %}
+                {% comment %} <a href="/addtocart?id={{product.id}}&fromcart=True" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</a> {% endcomment %}
+				
+				<a class="btn btn-outline-success" href="/book_detail/{{ product.id }}">View</a>
+                {% if product.taken_down %}
+                <a class="btn btn-outline-danger"href="book_takedown/{{ product.id }}">Post Book</a>
+                {% else %}
+                <a class="btn btn-outline-danger"href="book_takedown/{{ product.id }}">Takedown Book</a>
+                {% endif %}
+
+				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+{% endblock content %}
+
+
+
+{% comment %} {% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+     Display Books
+{% endblock title%}
+
+
+{% block navlinks %}
+  {% for item in item_list %}
+   <li>
+       <a class="nav-link" href="{{ item.link }}">{{ item.item}} <span class="sr-only">(current)</span></a>
+   </li>
+   {% endfor %}
+{% endblock navlinks %}
+
+
+{% block content %}
+<h1 align="center"> Display Book Page</h1>
+<table align="center" border="2" width="500">
+    {% for book in books %}
+       <tr>
+           <td>
+               <a href="/book_detail/{{ book.id }}">
+                   {{book.name}}
+               </a>
+           </td>
+           <td>
+               {{ book.publishdate }}
+           </td>
+           <td>
+               {{ book.username }}
+           </td>
+       </tr>
+    {% endfor %}
+</table>
+{% endblock content %} {% endcomment %}
+
+

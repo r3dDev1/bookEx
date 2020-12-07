@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+{% block title %}
+   Refund Policy
+{% endblock title%}
+
+{% block navlinks %}
+  {% for item in item_list %}
+   <li>
+       <a class="nav-link" href="{{ item.link }}">{{ item.item}} <span class="sr-only">(current)</span></a>
+   </li>
+   {% endfor %}
+{% endblock navlinks %}
+{% block content %}
+<h1 class = "p" align="center">Book Exchange Return Policy</h1>
+<p align="center"> Books can be returned within 30 days to the Book Exchange if the book is reported to be damaged in any way that compromises the structural integrity of the book</p>
+{% endblock content %}
+</body>
+</html>

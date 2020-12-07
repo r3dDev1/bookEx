@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+{% block title %}
+   Home
+{% endblock title%}
+
+
+{% block navlinks %}
+  {% for item in item_list %}
+   <li>
+       <a class="nav-link" href="{{ item.link }}">{{ item.item}} <span class="sr-only">(current)</span></a>
+   </li>
+   {% endfor %}
+
+{% endblock navlinks %}
+
+    {% block content %}
+    <h1 class="p" align="center">Welcome Book Exchange System </h1>
+    {% endblock content %}
+
+
+    
+</body>
+</html>

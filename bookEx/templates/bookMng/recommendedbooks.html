@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+   Recommended Books
+{% endblock title%}
+
+
+{% block navlinks %}
+  {% for item in item_list %}
+   <li>
+       <a class="nav-link" href="{{ item.link }}">{{ item.item}} <span class="sr-only">(current)</span></a>
+   </li>
+   {% endfor %}
+
+{% endblock navlinks %}
+
+{% block content %}
+
+
+
+	<div class="row">
+		{% for product in books %}
+		<div class="col-lg-4">
+            <img width="100%%" height="200" class="thumbnail" src="{{ product.picture }}">
+			<div class="box-element product">
+				<h6><strong>{{product.name}}</strong></h6>
+				<hr>
+
+                <a href="/addtocart?id={{product.id}}&fromcart=True" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</a>
+
+				<a class="btn btn-outline-success" href="/book_detail/{{ product.id }}">View</a>
+				<h4 style="display: inline-block; float: right"><strong>${{product.price}}</strong></h4>
+
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+
+{% endblock content %}
+

@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+     Book Details
+{% endblock title%}
+
+
+{% block navlinks %}
+  {% for item in item_list %}
+   <li>
+       <a class="nav-link" href="{{ item.link }}">{{ item.item}} <span class="sr-only">(current)</span></a>
+   </li>
+   {% endfor %}
+
+{% endblock navlinks %}
+
+
+
+{% block content %}
+
+<div class="content-center">
+
+<h1 align="center"> {{ book.name }} </h1>
+
+
+    <div id="boot_details">
+        <img src="{{ picture }}" alt="book image" width="300" height="300" >
+        <h5>{{ book.name }}</h5>
+        <h5>{{ book.publishdate }}</h5>
+        <h5>{{ book.username }}</h5>
+        <a href="/addtocart?id={{book.id}}&fromcart=True" class="btn btn-outline-secondary add-btn update-cart">Add to Cart</a>
+    </div>
+
+
+    <br>
+    <br>
+
+    <div id="reviews">
+        <a href="/postreview/{{book.id}}">Post Review</a>
+        <h3> Reviews</h3>
+        <br>
+        <br>
+
+        <div class="row">
+            {% for review in reviews %}
+
+
+          <div class="col-sm-6 review-box">
+            <div class="card text-white bg-dark border border-danger rounded">
+            <div class="card-body">
+                <h5 class="card-title">{{ review.name }}</h5>
+                <p class="card-text">{{ review.body }}</p>
+            </div>
+            </div>
+            </div>
+
+
+
+
+
+            {% endfor %}
+        </div>
+
+
+
+
+        {% comment %} {% for review in reviews %}
+        <div class="review">
+        <h5>{{ review.name }}</h5>
+        <p>{{ review.body }}</p>
+
+        </div>
+        <hr>
+        {% endfor %} {% endcomment %}
+    </div>
+
+</div>
+{% endblock content %}

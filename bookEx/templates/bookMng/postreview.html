@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+    Post Review
+{% endblock title%}
+
+{% block navlinks %}
+  {% for item in item_list %}
+   <li>
+       <a class="nav-link" href="{{ item.link }}">{{ item.item}} <span class="sr-only">(current)</span></a>
+   </li>
+   {% endfor %}
+{% endblock navlinks %}
+
+{% block content %}
+
+
+<h1> Post Review  for {{book.name}}</h1>
+    <form action="" enctype="multipart/form-data" method="post" novalidate>
+        <table>
+            {{ form.as_table }}
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Submit">
+                </td>
+            </tr>
+        </table>
+        {% csrf_token %}
+    </form>
+
+
+{% endblock content %}
